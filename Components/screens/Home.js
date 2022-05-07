@@ -17,8 +17,9 @@ export default function Home(){
     },[])
     return(
         <View style={styles.container}>
-            
-            <Text style={{color:'white'}}>Home</Text>
+           <View style={{backgroundColor:'#181818',borderRadius:15,margin:10,height:200,flexDirection:'column'}}>
+               <Text>Budget graph viewer !</Text>
+           </View> 
         </View>
     );
 
