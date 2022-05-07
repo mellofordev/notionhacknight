@@ -19,21 +19,34 @@ export default function AddExpense(){
 
     }
     const createBudget=()=>{
+        setLoading(true);
         notion_auth.pages.create({parent:{database_id:env.notion_database_id},
         properties:{
             "ExpenseOn":{
                 title:[{
                     type:'text',
                     text:{
-                        content:expense
+                        content:tag
                     }
             }]
-            }
+            },
+            "Amount":{
+                rich_text:[{
+                    type:'text',
+                    text:{
+                        content:expense,
+                    }
+                }]
+            },
+           
+            
         }
     });
 
     setLoading(false);
     Alert.alert("Added your expense !");
+    setExpense(0);
+    setTag('');
     }
     useEffect(()=>{
         apireg();
@@ -44,20 +57,17 @@ export default function AddExpense(){
             <View style={{backgroundColor:'#181818',borderRadius:15,margin:10,height:400,flexDirection:'column'}}>
                 <View style={{margin:8}}>
                     <Text style={styles.textstyle}>Expense Tag</Text>
-                    <TextInput placeholder=' Mention a tag like Food,Entertainment etc' onChangeText={(expense)=>{setExpense(expense)}} style={styles.textinputstyle} />
+                    <TextInput placeholder=' Mention a tag like Food,Entertainment etc' onChangeText={(tag)=>{setTag(tag)}} style={styles.textinputstyle} />
                 </View>
                 <View style={{margin:8}}>
                     <Text style={styles.textstyle}>Amount</Text>
-                    <TextInput placeholder='Date' style={styles.textinputstyle} />
+                    <TextInput placeholder='Date' onChangeText={(expense)=>{setExpense(expense)}} style={styles.textinputstyle} />
                 </View>
-                <View style={{margin:8}}>
-                    <Text style={styles.textstyle}>Date</Text>
-                    <TextInput placeholder='Tag' style={styles.textinputstyle} />
-                </View>
+                
                 <TouchableOpacity onPress={()=>{
-                    if(expense!=0){
+                    if(expense!=0 && tag!=''){
                         createBudget();
-                        setLoading(true);
+                        
                     }else{
                         Alert.alert("Enter the amount spend !");
                     }
