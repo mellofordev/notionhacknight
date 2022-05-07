@@ -2,6 +2,7 @@ import {View,Text,StyleSheet} from 'react-native';
 import { Client } from '@notionhq/client';
 import env from '../../env';
 import { useEffect } from 'react';
+import BudgetGraphCardComponent from './BudgetGraphCardComponent';
 
 const notion_secret_key = env.notion_secret_key.toString();
 const notion_db_id=env.notion_database_id.toString();
@@ -17,9 +18,7 @@ export default function Home(){
     },[])
     return(
         <View style={styles.container}>
-           <View style={{backgroundColor:'#181818',borderRadius:15,margin:10,height:200,flexDirection:'column'}}>
-               <Text>Budget graph viewer !</Text>
-           </View> 
+           <BudgetGraphCardComponent/>
         </View>
     );
 
