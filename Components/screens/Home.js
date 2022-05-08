@@ -9,7 +9,7 @@ const notion_db_id=env.notion_database_id.toString();
 const notion_auth = new Client({auth:notion_secret_key});
 export default function Home(){
     const [Data,setData]=useState([]);
-    const [partialData,setPartialData]=useState([]);
+    const [passData,setPassData]=useState([]);
     const apireg= async()=>{
         const res = await notion_auth.databases.query({database_id:notion_db_id});
         
@@ -20,16 +20,16 @@ export default function Home(){
     useEffect(()=>{
         apireg();
 
-    },[])
+    },[Data])
     return(
         <View style={styles.container}>
-           <BudgetGraphCardComponent/>
+           
            <ScrollView>
            {Data.map((i)=>{
                
                var element = i.properties.ExpenseOn.title[0];
                var amount =i.properties.Amount.rich_text[0];
-               
+              
                return(
                    <View style={styles.budgetContainer}>
                        <View style={{flexDirection:'row',justifyContent:'space-between'}}>

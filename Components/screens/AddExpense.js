@@ -70,7 +70,8 @@ export default function AddExpense(){
                 <TouchableOpacity onPress={()=>{
                     if(expense!=0 && tag!=''){
                         createBudget();
-                        
+                        setExpense(0);
+                        setTag('');
                     }else{
                         Alert.alert("Enter the amount spend !");
                     }
