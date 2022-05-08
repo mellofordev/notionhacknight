@@ -1,4 +1,4 @@
-import {View,Text,StyleSheet,FlatList} from 'react-native';
+import {View,Text,StyleSheet,ScrollView} from 'react-native';
 import { Client } from '@notionhq/client';
 import env from '../../env';
 import { useEffect,useState } from 'react';
@@ -16,23 +16,32 @@ export default function Home(){
         setData(res.results);
 
     }
+    
     useEffect(()=>{
         apireg();
+
     },[])
     return(
         <View style={styles.container}>
            <BudgetGraphCardComponent/>
+           <ScrollView>
            {Data.map((i)=>{
+               
                var element = i.properties.ExpenseOn.title[0];
-               console.log(element.plain_text);
+               var amount =i.properties.Amount.rich_text[0];
+               
                return(
-                   <View>
-                       <Text>Amount</Text>
+                   <View style={styles.budgetContainer}>
+                       <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+                        <Text style={{color:'white',margin:15,fontSize:24}}>{element.plain_text}</Text>
+                        <Text style={{color:'white',backgroundColor:'red',borderRadius:10,margin:15,fontSize:20}}>{amount!=undefined&&amount.plain_text}</Text>
+                       </View>
                    </View>
                );
                
            })
            }
+           </ScrollView>
            
         </View>
     );
@@ -45,6 +54,14 @@ const styles=StyleSheet.create({
         flex:1,
         
 
-    }    
+    },
+    budgetContainer:{
+        backgroundColor:'#181818',
+        borderRadius:15,
+        margin:15,
+        height:80,
+        flexDirection:'column',
+        
+    }   
 
 })

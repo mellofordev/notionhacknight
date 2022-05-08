@@ -24,7 +24,7 @@ export default function App() {
                tabBarIcon:({focused})=>{
                  return(
                    <View>
-                      <Feather name='home' size={24} color={focused?'white':'B3B3B3'}/>
+                      <Feather name='home' size={24} color={focused?'white':'#B3B3B3'}/>
                    </View>
                  );
                },
@@ -37,7 +37,7 @@ export default function App() {
                tabBarIcon:({focused})=>{
                  return(
                    <View>
-                      <Feather name='plus-circle' size={24} color={focused?'white':'B3B3B3'}/>
+                      <Feather name='plus-circle' size={24} color={focused?'white':'#B3B3B3'}/>
                    </View>
                  );
                },
