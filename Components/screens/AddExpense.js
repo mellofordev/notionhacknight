@@ -48,6 +48,9 @@ export default function AddExpense(){
     setExpense(0);
     setTag('');
     }
+   
+    
+    
     useEffect(()=>{
         apireg();
     },[]);
@@ -56,12 +59,12 @@ export default function AddExpense(){
         <View style={styles.container}>
             <View style={{backgroundColor:'#181818',borderRadius:15,margin:10,height:400,flexDirection:'column'}}>
                 <View style={{margin:8}}>
-                    <Text style={styles.textstyle}>Expense Tag</Text>
+                    <Text style={styles.textstyle}>Tag</Text>
                     <TextInput placeholder=' Mention a tag like Food,Entertainment etc' onChangeText={(tag)=>{setTag(tag)}} style={styles.textinputstyle} />
                 </View>
                 <View style={{margin:8}}>
                     <Text style={styles.textstyle}>Amount</Text>
-                    <TextInput placeholder='Date' onChangeText={(expense)=>{setExpense(expense)}} style={styles.textinputstyle} />
+                    <TextInput placeholder='Add your amount 1200,300 etc' onChangeText={(expense)=>{setExpense(expense)}} style={styles.textinputstyle} />
                 </View>
                 
                 <TouchableOpacity onPress={()=>{
@@ -74,6 +77,8 @@ export default function AddExpense(){
                 }} style={{margin:15,backgroundColor:'white',borderRadius:20,justifyContent:'center',alignItems:'center',height:45}}>
                     <Text>{loading==true ? 'Loading...' : 'Add expense'}</Text>
                 </TouchableOpacity>
+
+                
             </View>
         </View>
     );
